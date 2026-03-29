@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Fraunces } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
+import { Analytics } from '@vercel/analytics/next';
 import ContactModal from '@/components/ui/ContactModal';
 import './globals.css';
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
           <ContactModal />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
