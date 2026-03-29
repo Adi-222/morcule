@@ -2,21 +2,53 @@
 import Image from 'next/image'
 import ScrollReveal from '../ui/ScrollReveal'
 import { motion, Variants } from 'framer-motion'
+import { useRef } from 'react'
 
 export default function Work() {
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 60 },
+  const containerRef = useRef(null)
+
+  const leftCardVariants: Variants = {
+    hidden: { opacity: 0, x: -80 },
     visible: { 
       opacity: 1, 
-      y: 0, 
-      transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] } 
+      x: 0, 
+      transition: { 
+        duration: 1.2, 
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.15,
+        delayChildren: 0.5 
+      } 
     }
   }
 
+  const rightCardVariants: Variants = {
+    hidden: { opacity: 0, x: 80 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { 
+        duration: 1.2, 
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.15,
+        delayChildren: 0.5 
+      } 
+    }
+  }
+
+  const textMaskVariant: Variants = {
+    hidden: { y: "150%" },
+    visible: { y: "0%", transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+  }
+
+  const fadeUpVariant: Variants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  }
+
   return (
-    <section className="max-w-7xl mx-auto px-6 py-24 md:py-32 overflow-hidden" id="work">
+    <section ref={containerRef} className="max-w-7xl mx-auto px-6 py-24 md:py-32 overflow-hidden" id="work">
       <ScrollReveal>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-24">
           <div className="space-y-4">
             <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">Selected Work</span>
             <h2 className="text-4xl md:text-5xl font-serif font-medium text-on-surface dark:text-[#EDEDED]">Built for real businesses.</h2>
@@ -26,12 +58,12 @@ export default function Work() {
       </ScrollReveal>
       
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
-        {/* Case Study 1 */}
+        {/* Case Study 1 - Left */}
         <motion.div 
-          variants={cardVariants}
+          variants={leftCardVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-50px" }}
+          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
           className="md:col-span-7 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
@@ -48,20 +80,22 @@ export default function Work() {
           </div>
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="text-2xl font-serif font-medium mb-1 dark:text-[#EDEDED]">Estate Coffee Roasters</h3>
-              <p className="text-on-surface-variant dark:text-[#A0A0A0]">E-commerce & Brand Experience</p>
+              <div className="overflow-hidden pb-1">
+                <motion.h3 variants={textMaskVariant} className="text-2xl font-serif font-medium dark:text-[#EDEDED]">Estate Coffee Roasters</motion.h3>
+              </div>
+              <motion.p variants={fadeUpVariant} className="text-on-surface-variant dark:text-[#A0A0A0]">E-commerce & Brand Experience</motion.p>
             </div>
-            <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <motion.span variants={fadeUpVariant} className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</motion.span>
           </div>
         </motion.div>
 
-        {/* Case Study 2 */}
+        {/* Case Study 2 - Right */}
         <motion.div 
-          variants={cardVariants}
+          variants={rightCardVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-50px" }}
-          className="md:col-span-5 md:mt-24 group cursor-pointer"
+          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
+          className="md:col-span-5 md:mt-32 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
             <Image 
@@ -77,19 +111,21 @@ export default function Work() {
           </div>
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="text-2xl font-serif font-medium mb-1 dark:text-[#EDEDED]">Luna Aesthetics</h3>
-              <p className="text-on-surface-variant dark:text-[#A0A0A0]">Booking Platform & Visual Identity</p>
+              <div className="overflow-hidden pb-1">
+                <motion.h3 variants={textMaskVariant} className="text-2xl font-serif font-medium dark:text-[#EDEDED]">Luna Aesthetics</motion.h3>
+              </div>
+              <motion.p variants={fadeUpVariant} className="text-on-surface-variant dark:text-[#A0A0A0]">Booking Platform & Visual Identity</motion.p>
             </div>
-            <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <motion.span variants={fadeUpVariant} className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</motion.span>
           </div>
         </motion.div>
 
-        {/* Case Study 3 */}
+        {/* Case Study 3 - Left */}
         <motion.div 
-          variants={cardVariants}
+          variants={leftCardVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-50px" }}
+          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
           className="md:col-span-5 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
@@ -106,20 +142,22 @@ export default function Work() {
           </div>
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="text-2xl font-serif font-medium mb-1 dark:text-[#EDEDED]">Summit Dental</h3>
-              <p className="text-on-surface-variant dark:text-[#A0A0A0]">Patient Portal & SEO Strategy</p>
+              <div className="overflow-hidden pb-1">
+                <motion.h3 variants={textMaskVariant} className="text-2xl font-serif font-medium dark:text-[#EDEDED]">Summit Dental</motion.h3>
+              </div>
+              <motion.p variants={fadeUpVariant} className="text-on-surface-variant dark:text-[#A0A0A0]">Patient Portal & SEO Strategy</motion.p>
             </div>
-            <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <motion.span variants={fadeUpVariant} className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</motion.span>
           </div>
         </motion.div>
 
-        {/* Case Study 4 */}
+        {/* Case Study 4 - Right */}
         <motion.div 
-          variants={cardVariants}
+          variants={rightCardVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-50px" }}
-          className="md:col-span-7 md:-mt-24 group cursor-pointer"
+          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
+          className="md:col-span-7 md:-mt-32 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[16/10] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
             <Image 
@@ -135,10 +173,12 @@ export default function Work() {
           </div>
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="text-2xl font-serif font-medium mb-1 dark:text-[#EDEDED]">Maison Bistro</h3>
-              <p className="text-on-surface-variant dark:text-[#A0A0A0]">Reservation System & Art Direction</p>
+              <div className="overflow-hidden pb-1">
+                <motion.h3 variants={textMaskVariant} className="text-2xl font-serif font-medium dark:text-[#EDEDED]">Maison Bistro</motion.h3>
+              </div>
+              <motion.p variants={fadeUpVariant} className="text-on-surface-variant dark:text-[#A0A0A0]">Reservation System & Art Direction</motion.p>
             </div>
-            <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <motion.span variants={fadeUpVariant} className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</motion.span>
           </div>
         </motion.div>
       </div>
