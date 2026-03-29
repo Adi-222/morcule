@@ -1,11 +1,21 @@
 'use client'
 import Image from 'next/image'
 import ScrollReveal from '../ui/ScrollReveal'
-import { motion, Variants } from 'framer-motion'
+import { motion, Variants, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 export default function Work() {
   const containerRef = useRef(null)
+  // refs for each project card to control cross‑fade based on 50% visibility
+  const left1Ref = useRef(null)
+  const right2Ref = useRef(null)
+  const left3Ref = useRef(null)
+  const right4Ref = useRef(null)
+
+  const left1InView = useInView(left1Ref, { amount: 0.5, once: false })
+  const right2InView = useInView(right2Ref, { amount: 0.5, once: false })
+  const left3InView = useInView(left3Ref, { amount: 0.5, once: false })
+  const right4InView = useInView(right4Ref, { amount: 0.5, once: false })
 
   const leftCardVariants: Variants = {
     hidden: { opacity: 0, x: -80 },
@@ -51,7 +61,31 @@ export default function Work() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-24">
           <div className="space-y-4">
             <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase">Selected Work</span>
-            <h2 className="text-4xl md:text-5xl font-serif font-medium text-on-surface dark:text-[#EDEDED]">Built for real businesses.</h2>
+            <motion.h2 
+              variants={{
+                hidden: { opacity: 1 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.05, delayChildren: 0.1 }
+                }
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.5 }}
+              className="text-4xl md:text-5xl font-serif font-medium text-on-surface dark:text-[#EDEDED] mt-4"
+            >
+              {"Built for real businesses.".split("").map((char, index) => (
+                <motion.span 
+                  key={index}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { duration: 0.01 } }
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.h2>
           </div>
           <p className="max-w-xs text-on-surface-variant dark:text-[#A0A0A0]">We don&apos;t do generic. Every site is custom-tailored to the brand&apos;s unique energy.</p>
         </div>
@@ -62,8 +96,8 @@ export default function Work() {
         <motion.div 
           variants={leftCardVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
+          animate={left1InView ? "visible" : "hidden"}
+          ref={left1Ref}
           className="md:col-span-7 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
@@ -93,8 +127,8 @@ export default function Work() {
         <motion.div 
           variants={rightCardVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
+          animate={right2InView ? "visible" : "hidden"}
+          ref={right2Ref}
           className="md:col-span-5 md:mt-32 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
@@ -124,8 +158,8 @@ export default function Work() {
         <motion.div 
           variants={leftCardVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
+          animate={left3InView ? "visible" : "hidden"}
+          ref={left3Ref}
           className="md:col-span-5 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
@@ -155,8 +189,8 @@ export default function Work() {
         <motion.div 
           variants={rightCardVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.1, margin: "-150px 0px -150px 0px" }}
+          animate={right4InView ? "visible" : "hidden"}
+          ref={right4Ref}
           className="md:col-span-7 md:-mt-32 group cursor-pointer"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[16/10] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
