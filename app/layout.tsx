@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' });
 
 export const metadata: Metadata = {
-  title: 'Morcule | Vibe-coded websites.',
-  description: 'Vibe-coded websites for coffee shops, salons, dentists & more. We blend editorial craft with conversion science.',
+  title: 'Morcule.',
+  description: 'websites for coffee shops, salons, dentists & more. We blend editorial craft with conversion science.',
 };
 
 export default function RootLayout({

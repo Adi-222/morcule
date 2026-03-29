@@ -7,17 +7,17 @@ import { openContactModal } from '../ui/ContactModal'
 export default function Hero() {
   const [playCount, setPlayCount] = useState(0)
 
-  const containerVariants: Variants = {
+  const getContainerVariants = (delay: number): Variants => ({
     hidden: { opacity: 1 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.04, delayChildren: 0.15 }
+      transition: { staggerChildren: 0.04, delayChildren: delay }
     }
-  }
+  })
 
   const typeLetterVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.01 } }
+    hidden: { opacity: 0.25, filter: "blur(2px)" },
+    visible: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.3 } }
   }
 
   const renderText = (text: string, isPrimary: boolean = false) => {
@@ -42,22 +42,22 @@ export default function Hero() {
         <motion.h1
           key={playCount}
           onMouseLeave={() => setPlayCount(c => c + 1)}
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
           className="text-5xl md:text-7xl lg:text-8xl font-serif font-semibold text-on-background dark:text-[#EDEDED] leading-[1.1] tracking-tight flex flex-col items-center gap-y-2 md:gap-y-4 cursor-default"
         >
-          <div>{renderText("We build websites")}</div>
-          <div>{renderText("your customers", true)}</div>
-          <div className="flex items-center justify-center">
+          <motion.div variants={getContainerVariants(0.1)} initial="hidden" animate="visible">
+            {renderText("We build websites")}
+          </motion.div>
+          <motion.div variants={getContainerVariants(0.9)} initial="hidden" animate="visible">
+            {renderText("your customers", true)}
+          </motion.div>
+          <motion.div variants={getContainerVariants(1.7)} initial="hidden" animate="visible" className="flex items-center justify-center">
             {renderText("can't ignore.")}
-            
-          </div>
+          </motion.div>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.8 }}
+          transition={{ delay: 2.6, duration: 0.8 }}
           className="text-lg md:text-xl text-on-surface-variant dark:text-[#A0A0A0] max-w-2xl mx-auto font-body"
         >
           Custom websites for coffee shops, salons, dentists & more. We blend editorial craft with conversion science.
@@ -65,7 +65,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          transition={{ delay: 3.0, duration: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
         >
           <motion.button
