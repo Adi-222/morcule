@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import Link from 'next/link'
 import ScrollReveal from '../ui/ScrollReveal'
 import { motion, Variants, useInView } from 'framer-motion'
 import { useRef } from 'react'
@@ -100,27 +101,29 @@ export default function Work() {
           ref={left1Ref}
           className="md:col-span-7 group cursor-pointer"
         >
-          <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
-            <Image 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxj47TRJScMDtoIUoNFmqDQb-iT3j-Rpm9_E6UMAiFfjaMgaqHGggzKch0XJoWorur5BzRgCxqlbvtNl7jSkOLWodB7hqSdJp_Ek4wjLuoLLhu-F8DbMRZZbTbJHBk-nh20Yw7k5wnSSJgtFAacHr770o8yCCd_chm45vQdEUcZDMQZd2N5Ciw5dtQ6y_aAmfvrHOmYci9L-alASs_LpWLMNsPq0xiX6IReuNQKGRoTulzEyDAlNzWW1MPfFOhfnGRb6xPWQy-Cp0"
-              alt="Estate Coffee Roasters"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform duration-1000 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
-              <span className="bg-surface text-on-surface px-6 py-3 rounded-full font-medium shadow-xl translate-y-4 group-hover:translate-y-0 transition-all duration-500">View Project</span>
-            </div>
-          </div>
-          <div className="flex justify-between items-start">
-            <div>
-              <div className="overflow-hidden pb-1">
-                <motion.h3 variants={textMaskVariant} className="text-2xl font-serif font-medium dark:text-[#EDEDED]">Estate Coffee Roasters</motion.h3>
+          <Link href="/work/estate-coffee-roasters" className="block">
+            <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-surface-dim dark:bg-[#1E1E1E] mb-6 dark:border dark:border-white/8">
+              <Image 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxj47TRJScMDtoIUoNFmqDQb-iT3j-Rpm9_E6UMAiFfjaMgaqHGggzKch0XJoWorur5BzRgCxqlbvtNl7jSkOLWodB7hqSdJp_Ek4wjLuoLLhu-F8DbMRZZbTbJHBk-nh20Yw7k5wnSSJgtFAacHr770o8yCCd_chm45vQdEUcZDMQZd2N5Ciw5dtQ6y_aAmfvrHOmYci9L-alASs_LpWLMNsPq0xiX6IReuNQKGRoTulzEyDAlNzWW1MPfFOhfnGRb6xPWQy-Cp0"
+                alt="Estate Coffee Roasters"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+                <span className="bg-surface text-on-surface px-6 py-3 rounded-full font-medium shadow-xl translate-y-4 group-hover:translate-y-0 transition-all duration-500">View Project</span>
               </div>
-              <motion.p variants={fadeUpVariant} className="text-on-surface-variant dark:text-[#A0A0A0]">E-commerce & Brand Experience</motion.p>
             </div>
-            <motion.span variants={fadeUpVariant} className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</motion.span>
-          </div>
+            <div className="flex justify-between items-start">
+              <div>
+                <div className="overflow-hidden pb-1">
+                  <motion.h3 variants={textMaskVariant} className="text-2xl font-serif font-medium dark:text-[#EDEDED]">Estate Coffee Roasters</motion.h3>
+                </div>
+                <motion.p variants={fadeUpVariant} className="text-on-surface-variant dark:text-[#A0A0A0]">E-commerce & Brand Experience</motion.p>
+              </div>
+              <motion.span variants={fadeUpVariant} className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</motion.span>
+            </div>
+          </Link>
         </motion.div>
 
         {/* Case Study 2 - Right */}

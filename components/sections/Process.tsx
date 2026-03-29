@@ -8,7 +8,14 @@ const stepVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
 }
 
-function ProcessStep({ step, index }: { step: any, index: number }) {
+type ProcessStepType = {
+  num: string;
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+function ProcessStep({ step }: { step: ProcessStepType }) {
   const ref = useRef(null)
   const inView = useInView(ref, { amount: 0.5, once: false })
   
@@ -60,7 +67,7 @@ export default function Process() {
         />
 
         {steps.map((step, index) => (
-          <ProcessStep key={index} step={step} index={index} />
+          <ProcessStep key={index} step={step} />
         ))}
       </div>
     </section>
